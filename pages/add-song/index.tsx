@@ -5,7 +5,7 @@ import CompletedView from 'components/add-song/completedView';
 import Button from 'components/button'
 import React, { useState } from 'react'
 
-import { AddSongWrapper, StickyFooter, FooterTitle } from './styledAddSong';
+import { AddSongWrapper, StickyFooter, FooterTitle } from '../../styles/styledAddSong';
 
 interface Props {
     
