@@ -36,9 +36,17 @@ const CopmletedView = ({ pageEndTimeStamps, url, file }: CopmletedViewProps) => 
         loaded: number;
         loadedSeconds: number;
     }) => {
-        if (state.playedSeconds >= pageEndTimeStamps[pageNumber - 1]) {
-            setPageNumber(prev => prev + 1);
+        let lastTimestamp = pageEndTimeStamps.filter(time => state.playedSeconds > time).pop();
+
+        if(lastTimestamp){
+            const index:number|undefined = pageEndTimeStamps.findIndex(time => Math.floor(time) == Math.floor(lastTimestamp!))
+            if(index !== undefined){
+                setPageNumber(index+2)
+            }
+        }else{
+            setPageNumber(1)
         }
+       
     }
 
     return (
