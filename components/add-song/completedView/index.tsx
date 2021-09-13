@@ -39,15 +39,15 @@ const CopmletedView = ({ pageEndTimeStamps, url, file }: CopmletedViewProps) => 
     }) => {
         let lastTimestamp = pageEndTimeStamps.filter(time => state.playedSeconds > time).pop();
 
-        if(lastTimestamp){
-            const index:number|undefined = pageEndTimeStamps.findIndex(time => Math.floor(time) == Math.floor(lastTimestamp!))
-            if(index !== undefined){
-                setPageNumber(index+2)
+        if (lastTimestamp) {
+            const index: number | undefined = pageEndTimeStamps.findIndex(time => Math.floor(time) == Math.floor(lastTimestamp!))
+            if (index !== undefined) {
+                setPageNumber(index + 2)
             }
-        }else{
+        } else {
             setPageNumber(1)
         }
-       
+
     }
 
     const handleScale = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,8 +69,9 @@ const CopmletedView = ({ pageEndTimeStamps, url, file }: CopmletedViewProps) => 
                         ref={playerRef}
                     />}
                 </PlayerWrapper>
-                <input name="scale" value={scale} onChange={handleScale}/><span>%</span>
+
                 <DocumentWrapper>
+                    <input name="scale" value={scale} onChange={handleScale} /><span>%</span>
                     {file && <Document
                         file={file}
                         onLoadSuccess={onDocumentLoadSuccess}
@@ -79,8 +80,8 @@ const CopmletedView = ({ pageEndTimeStamps, url, file }: CopmletedViewProps) => 
                         <Page
                             pageNumber={pageNumber}
                             height={700}
-                            scale={scale/100}
-                         />
+                            scale={scale / 100}
+                        />
                     </Document>}
                 </DocumentWrapper>
             </InnerWrapper>
