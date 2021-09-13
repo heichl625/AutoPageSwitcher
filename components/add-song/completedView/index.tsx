@@ -25,6 +25,7 @@ const CopmletedView = ({ pageEndTimeStamps, url, file }: CopmletedViewProps) => 
 
     const [numPages, setNumPages] = useState<number | null>(null);
     const [pageNumber, setPageNumber] = useState<number>(1);
+    const [scale, setScale] = useState<number>(100);
 
     const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
         setNumPages(numPages)
@@ -49,6 +50,10 @@ const CopmletedView = ({ pageEndTimeStamps, url, file }: CopmletedViewProps) => 
        
     }
 
+    const handleScale = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setScale(parseInt(e.target.value));
+    }
+
     return (
         <Wrapper>
             <InnerWrapper>
@@ -64,6 +69,7 @@ const CopmletedView = ({ pageEndTimeStamps, url, file }: CopmletedViewProps) => 
                         ref={playerRef}
                     />}
                 </PlayerWrapper>
+                <input name="scale" value={scale} onChange={handleScale}/><span>%</span>
                 <DocumentWrapper>
                     {file && <Document
                         file={file}
@@ -73,6 +79,7 @@ const CopmletedView = ({ pageEndTimeStamps, url, file }: CopmletedViewProps) => 
                         <Page
                             pageNumber={pageNumber}
                             height={700}
+                            scale={scale/100}
                          />
                     </Document>}
                 </DocumentWrapper>
