@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link';
 
-import { NavigationBarWrapper, NavigationItem } from './styledNavigationBar'
+import { NavigationBarWrapper, NavigationItem, RightWrapper } from './styledNavigationBar'
 
 const NavigationBar = () => {
     return (
@@ -9,6 +9,12 @@ const NavigationBar = () => {
             <Link href="/add-song" passHref>
                 <NavigationItem>Add Song</NavigationItem>
             </Link>
+            <RightWrapper>
+                <Link href="/signin" passHref>
+                    <NavigationItem>Sign In</NavigationItem>
+                </Link>
+            </RightWrapper>
+
         </NavigationBarWrapper>
     )
 }

@@ -1,4 +1,4 @@
-import styled from 'styled-components'; 
+import styled from 'styled-components';
 import { media } from 'styles/breakpoints';
 
 export const NavigationBarWrapper = styled.div`
@@ -15,4 +15,16 @@ export const NavigationBarWrapper = styled.div`
 export const NavigationItem = styled.a`
     color: ${props => props.theme.colors.main};
     font-size: ${props => props.theme.fontSize.navigationItem};
+`
+
+export const RightWrapper = styled.div`
+    display: none;
+
+    ${media.laptop}{
+        position: absolute;
+        right: 10%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    };
 `
