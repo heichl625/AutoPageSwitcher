@@ -15,6 +15,8 @@ export const NavigationBarWrapper = styled.div`
 export const NavigationItem = styled.a`
     color: ${props => props.theme.colors.main};
     font-size: ${props => props.theme.fontSize.navigationItem};
+    cursor: pointer;
+    margin-left: 1rem;
 `
 
 export const RightWrapper = styled.div`

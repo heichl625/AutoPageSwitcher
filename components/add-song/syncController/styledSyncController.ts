@@ -21,6 +21,7 @@ export const InnerWrapper = styled.div`
     display: flex;
     padding: 5rem 10%;
     justify-content: space-between;
+    position: relative;
 `
 
 export const Title = styled.h2`
@@ -48,4 +49,11 @@ export const ButtonWrapper = styled.div`
 export const DocumentWrapper = styled.div`
     max-height: 100%;
     overflow: scroll;
+`
+
+export const CloseBtnWrapper = styled.div`
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    cursor: pointer;
 `

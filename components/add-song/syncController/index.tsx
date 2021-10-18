@@ -1,13 +1,15 @@
 import React, { useState, useRef } from 'react'
 import ReactPlayer from 'react-player/youtube'
 import { Document, Page } from 'react-pdf';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 //component
 import Button from 'components/button';
 
 
 //styled component
-import { Wrapper, InnerWrapper, Title, Subtitle, PlayerWrapper, ButtonWrapper, DocumentWrapper } from './styledSyncController'
+import { Wrapper, InnerWrapper, Title, Subtitle, PlayerWrapper, ButtonWrapper, DocumentWrapper, CloseBtnWrapper } from './styledSyncController'
 import { NumberOfPages } from '../step2/styledStep2';
 
 
@@ -22,9 +24,10 @@ interface SyncControllerProps {
     file: string | ArrayBuffer | null | undefined;
     setPageEndTimeStamps: (currentTime: number) => void;
     handleSyncFinished: () => void;
+    onClose: () => void
 }
 
-const SyncController = ({ url, file, setPageEndTimeStamps, handleSyncFinished }: SyncControllerProps) => {
+const SyncController = ({ url, file, setPageEndTimeStamps, handleSyncFinished, onClose }: SyncControllerProps) => {
 
     const playerRef = useRef<ReactPlayer>(null)
 
@@ -40,7 +43,7 @@ const SyncController = ({ url, file, setPageEndTimeStamps, handleSyncFinished }:
 
         const currentTime = playerRef.current?.getCurrentTime();
 
-        if(currentTime){
+        if (currentTime) {
             setPageEndTimeStamps(currentTime);
         }
 
@@ -49,15 +52,19 @@ const SyncController = ({ url, file, setPageEndTimeStamps, handleSyncFinished }:
         }
     }
 
+    const handleClose = () => {
+        onClose()
+    }
+
     return (
         <Wrapper>
             <InnerWrapper>
                 <PlayerWrapper>
                     <Title>Play The Music</Title>
                     <Subtitle>Follow the music and press {`"This Page Finished"`} Button when this page of document ends. </Subtitle>
-                    {url && <ReactPlayer 
-                        url={url} 
-                        width="100%" 
+                    {url && <ReactPlayer
+                        url={url}
+                        width="100%"
                         onStart={() => setVideoStarted(true)}
                         controls={true}
                         ref={playerRef}
@@ -75,7 +82,9 @@ const SyncController = ({ url, file, setPageEndTimeStamps, handleSyncFinished }:
                         <Page pageNumber={pageNumber} />
                     </Document>}
                 </DocumentWrapper>
-
+                <CloseBtnWrapper onClick={handleClose}>
+                    <FontAwesomeIcon icon={faTimes} size="2x"/>
+                </CloseBtnWrapper>
             </InnerWrapper>
         </Wrapper>
     )

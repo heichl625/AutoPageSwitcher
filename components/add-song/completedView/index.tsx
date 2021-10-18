@@ -6,7 +6,9 @@ import { Document, Page } from 'react-pdf';
 import Button from 'components/button';
 
 //styled compoenent
-import { Wrapper, InnerWrapper, Title, Subtitle, PlayerWrapper, DocumentWrapper } from './styledCompletedView'
+import { Wrapper, InnerWrapper, Title, Subtitle, PlayerWrapper, DocumentWrapper, BtnWrapper } from './styledCompletedView'
+
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
 
 const options = {
     cMapUrl: 'cmaps/',
@@ -20,6 +22,8 @@ interface CopmletedViewProps {
 }
 
 const CopmletedView = ({ pageEndTimeStamps, url, file }: CopmletedViewProps) => {
+
+    const user = useAppSelector(store => store.users);
 
     const playerRef = useRef<ReactPlayer>(null)
 
@@ -68,6 +72,15 @@ const CopmletedView = ({ pageEndTimeStamps, url, file }: CopmletedViewProps) => 
                         controls={true}
                         ref={playerRef}
                     />}
+                    {user.auth && <BtnWrapper>
+                        <Button
+                            label="Save For Future Use"
+                            onClick={() => { }}
+                            type="success"
+                        />
+                    </BtnWrapper>}
+
+
                 </PlayerWrapper>
 
                 <DocumentWrapper>

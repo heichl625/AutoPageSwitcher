@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
     };
 `
 
-export const SigninForm = styled.form`
+export const SignupForm = styled.form`
     border: 1px solid ${props => props.theme.colors.separator};
     border-radius: 0.5rem;
     padding: 1rem;
@@ -40,7 +40,6 @@ export const RegisterText = styled.p`
         text-decoration: underline;
     }
 `
-
 export const ErrorText = styled.p`
     color: ${props => props.theme.colors.error};
     font-size: 1.125rem;

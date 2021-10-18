@@ -1,16 +1,14 @@
-import { Wrapper, SigninForm, RegisterText, ErrorText } from './styledSignin';
+import { Wrapper, SignupForm, ErrorText } from './styledSignup';
 import Axios from 'utils/axios';
 import React, { useState } from 'react'
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Input from 'components/input';
 import Button from 'components/button';
-
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import { useCookie } from 'hooks/useCookie';
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { signin } from 'redux/slice/users';
-
 
 interface ResponseData {
 
@@ -28,36 +26,29 @@ const Signin = () => {
     const dispatch = useAppDispatch();
     const router = useRouter();
 
-    const [usernameOrEmail, setUsernameOrEmail] = useState<string>("")
+    const [username, setUsername] = useState<string>("")
+    const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
-    const [cookie, updateCookie] = useCookie("access_token", "");
-    const [error, setError] = useState<string>("")
+    const [confirmPassword, setConfrimPassword] = useState<string>("")
+    const [error, setError] = useState<string>("");
 
-    const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
+    const [cookie, updateCookie] = useCookie("access_token", "");
+
+    const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
         
         e.preventDefault();
 
-        let username: string|undefined;
-        let email: string|undefined;
-
-        if(usernameOrEmail.indexOf('@') !== -1){
-            email = usernameOrEmail;
-        }else{
-            username =usernameOrEmail;
-        }
-
         try{
-            
-            let result = await Axios.post('/auth/signin', {
+            let result = await Axios.post('/auth/signup', {
                 username,
                 email,
-                password
-            })as AxiosResponse<ResponseData>
-
+                password,
+                confirmPassword
+            }) as AxiosResponse<ResponseData>
+    
             let { data } = result.data
-
+    
             if(data.access_token){
-                console.log('signed in')
                 updateCookie(data.access_token);
                 dispatch(signin({
                     id: data._id,
@@ -66,10 +57,15 @@ const Signin = () => {
                     access_token: data.access_token,
                     auth: true
                 }))
-                router.back();
+                router.push('/');
             }
         }catch(err){
-             setError(err.response.data.message[0] ?? err.response.data.message);
+            console.log(err.response)
+            if(typeof err.response.data.message === 'string'){
+                setError(err.response.data.message)
+            }else{
+                setError(err.response.data.message[0])
+            }
         }
 
         
@@ -78,15 +74,23 @@ const Signin = () => {
 
     return (
         <Wrapper>
-            <SigninForm onSubmit={handleSignIn}>
-                <h1>Sign In</h1>
+            <SignupForm onSubmit={handleSignUp}>
+                <h1>Become a member</h1>
                 <Input 
                     placeholder=""
-                    label="Email / Username"
-                    value={usernameOrEmail}
-                    onChange={(e) => setUsernameOrEmail(e.target.value)}
+                    label="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     type="text"
-                    name="usernameOrEmail"
+                    name="email"
+                />
+                 <Input 
+                    placeholder=""
+                    label="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    type="text"
+                    name="username"
                 />
                 <Input 
                     placeholder=""
@@ -96,18 +100,21 @@ const Signin = () => {
                     type="password"
                     name="password"
                 />
+                <Input 
+                    placeholder=""
+                    label="Confirm Password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfrimPassword(e.target.value)}
+                    type="password"
+                    name="confirmPassword"
+                />
                 {error && <ErrorText>{error}</ErrorText>}
                 <Button 
-                    label="Sign In"
+                    label="Sign Up"
                     type="action"
                     onClick={()=>{}}
                 />
-                <RegisterText>
-                    Don't have an account? <Link href="/signup">
-                        Sign up 
-                    </Link> now.
-                </RegisterText>
-            </SigninForm>
+            </SignupForm>
         </Wrapper>
     )
 }

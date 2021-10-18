@@ -53,7 +53,10 @@ const AddSong = (props: Props) => {
                 url={confirmedUrl}
                 file={file}
                 setPageEndTimeStamps={(currentTime: number) => handlePageFinished(currentTime)}
-                handleSyncFinished={() => handleSyncFinished()} />}
+                handleSyncFinished={() => handleSyncFinished()} 
+                onClose={() => setIsStep3(false)}
+            />
+                }
             {completed && <CompletedView 
                 url={confirmedUrl}
                 file={file}

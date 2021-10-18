@@ -50,4 +50,8 @@ export const DocumentWrapper = styled.div`
     overflow: scroll;
 `
 
+export const BtnWrapper = styled.div`
+    margin-top: 2rem;
+`
+
 
