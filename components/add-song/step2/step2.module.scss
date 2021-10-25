@@ -1,0 +1,50 @@
+@use '../../../styles/breakpoints.scss' as  breakpoints;
+@use '../../../styles/colors.scss' as colors;
+
+.root{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5rem;
+}
+
+.titleWrapper{
+    display: flex;
+    align-items: baseline;
+}
+
+.title{
+    color: colors.$primary;
+    font-size: 2.25rem;
+    font-weight: 500;
+}
+
+.titleDescription {
+    color: colors.$primary;
+    font-size: 1.125rem;
+    font-weight: 400;
+    margin-left: 1rem;
+}
+
+.buttonWrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.numberOfPage{
+    color: colors.$primary;
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+.pdfWrapper{
+    margin-left: auto;
+    
+    & > div {
+        width: 100%;
+        display: flex;
+    flex-direction: column;
+    }
+}

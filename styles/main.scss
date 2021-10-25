@@ -1,0 +1,8 @@
+@use './breakpoints.scss' as breakpoints;
+
+main{
+    @include breakpoints.xl{
+        padding: 1rem 6%;
+        height: calc(100vh - 3.5rem)
+    }
+}

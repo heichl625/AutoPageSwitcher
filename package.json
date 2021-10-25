@@ -19,11 +19,13 @@
     "@types/styled-components": "^5.1.12",
     "axios": "^0.22.0",
     "next": "11.1.0",
+    "rc-slider": "^9.7.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-pdf": "^5.3.2",
     "react-player": "^2.9.0",
     "react-redux": "^7.2.5",
+    "sass": "^1.43.3",
     "styled-components": "^5.3.0",
     "worker-loader": "^3.0.8"
   },

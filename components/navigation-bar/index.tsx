@@ -6,6 +6,9 @@ import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { signout } from 'redux/slice/users';
 import { useCookie } from 'hooks/useCookie';
 
+//styles
+import $ from './navigationBar.module.scss';
+
 const NavigationBar = () => {
 
     const dispatch = useAppDispatch();
@@ -14,27 +17,32 @@ const NavigationBar = () => {
     const [cookie, setCookie] = useCookie("access_token", "");
 
     const handleSignout = () => {
-        if(confirm("Are you sure you want to signout?")){
+        if (confirm("Are you sure you want to signout?")) {
             dispatch(signout())
             setCookie("")
         }
     }
 
     return (
-        <NavigationBarWrapper>
-            <Link href="/add-song" passHref>
-                <NavigationItem>Add Song</NavigationItem>
+        <div className={$.root}>
+            <Link href="/" passHref>
+                <div className={$.navigationBrand}>
+                    Scroll Your Music
+                </div>
             </Link>
-            <RightWrapper>
-                {user.auth && <NavigationItem>Hi, {user.username}</NavigationItem>}
-                {user.auth 
-                    ? <NavigationItem onClick={handleSignout}>Sign Out</NavigationItem>
+            <Link href="/add-song" passHref>
+                <div className={$.navigationItem}>Create Your Own</div>
+            </Link>
+            <div className={$.rightWrapper}>
+                {user.auth && <div className={$.navigationItem}>Hi, {user.username}</div>}
+                {user.auth
+                    ? <div className={$.navigationItem} onClick={handleSignout}>Sign Out</div>
                     : <Link href="/signin" passHref>
-                        <NavigationItem>Sign In</NavigationItem>
+                        <div className={$.navigationItem}>Sign In</div>
                     </Link>}
-            </RightWrapper>
+            </div>
 
-        </NavigationBarWrapper>
+        </div>
     )
 }
 

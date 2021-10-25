@@ -2,11 +2,14 @@ import styled from 'styled-components';
 import { media } from 'styles/breakpoints';
 
 export const AddSongWrapper = styled.div`
-    display: flex;
+    display: grid;
     
-    ${media.desktop}{
-        justify-content: space-between;
-        align-items: center;
+    ${media.laptop}{
+        grid-template-areas: 
+            'title title'
+            'subtitle subtitle'
+            'step1 step2';
+        grid-gap: 10px;
     }
 `
 
@@ -38,4 +41,27 @@ export const FooterTitle = styled.p`
     margin: 0;
     margin-right: 1rem;
 `
+export const TitleInput = styled.input`
+    font-size: 2.5rem;
+    padding: 0.5rem 0;
+    border: none;
+    outline: none;
+    grid-area: title;
+`
 
+export const SingerInput = styled.input`
+    grid-area: subtitle;
+    font-size: 1.5rem;
+    padding: 0.5rem 0;
+    margin-top: 1rem;
+    border: none;
+    outline: none;
+`
+
+export const Step1Wrapper = styled.div`
+    grid-area: step1;
+`
+
+export const Step2Wrapper = styled.div`
+    grid-area: step2;
+`

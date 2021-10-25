@@ -1,0 +1,42 @@
+@use '../../styles/colors.scss' as colors;
+@use '../../styles/breakpoints.scss' as  breakpoints;
+
+.root{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid colors.$separator;
+    background-color: colors.$secondary;
+    vertical-align: baseline;
+    border-bottom: 1px solid colors.$separator;
+
+    @include breakpoints.xl{
+        padding: 1rem 6%;
+    };
+}
+
+.navigationBrand {
+    font-weight: 700;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.navigationItem {
+    color: colors.$primary;
+    font-size: 0.875rem;
+    cursor: pointer;
+    margin-left: 1rem;
+    vertical-align: baseline;
+    margin-top: auto;
+}
+
+.rightWrapper {
+    display: none;
+
+   @include breakpoints.xl{
+        position: absolute;
+        right: 6%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    };
+}

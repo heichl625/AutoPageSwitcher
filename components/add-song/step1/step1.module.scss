@@ -1,0 +1,41 @@
+@use '../../../styles/colors.scss' as colors;
+@use '../../../styles/breakpoints.scss' as breakpoints;
+
+.root{
+    display: flex;
+    flex-direction: column;
+}
+
+.titleWrapper{
+    display: flex;
+    align-items: baseline;
+}
+
+.title{
+    color: colors.$primary;
+    font-size: 2.25rem;
+    font-weight: 500;
+}
+
+.titleDescription{
+    color: colors.$primary;
+    font-size: 1.125rem;
+    font-weight: 400;
+    margin-left: 1rem;
+}
+
+.formWrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inputWrapper{
+    flex-grow: 1;
+    margin-right: 1rem;
+}
+
+.playerWrapper{
+    margin: 1rem 0;
+    width: 100%;
+}

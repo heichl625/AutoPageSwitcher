@@ -5,9 +5,9 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     
-    ${media.laptop}{
+    /* ${media.laptop}{
         width: 44vw;
-    }
+    } */
 `
 
 export const TitleWrapper = styled.div`

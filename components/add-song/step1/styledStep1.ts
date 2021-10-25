@@ -5,10 +5,10 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     
-    ${media.laptop}{
+    /* ${media.laptop}{
         width: 45%;
         margin: 0 3rem 0 0;
-    }
+    } */
 `
 
 export const TitleWrapper = styled.div`

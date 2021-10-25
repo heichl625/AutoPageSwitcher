@@ -9,6 +9,11 @@ import { Provider } from 'react-redux'
 import { store } from 'redux/store'
 import Auth from 'components/auth';
 
+//styles
+import '../styles/main.scss';
+import 'rc-slider/assets/index.css';
+import 'rc-tooltip/assets/bootstrap.css';
+
 function MyApp({ Component, pageProps }: AppProps) {
 
   
@@ -17,9 +22,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <Auth />
       <NavigationBar />
-      <MainWrapper>
+      <main>
         <Component {...pageProps} />
-      </MainWrapper>
+      </main>
     </Provider>
   </ThemeProvider>
 }

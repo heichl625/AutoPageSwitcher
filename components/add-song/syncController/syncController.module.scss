@@ -1,0 +1,40 @@
+@use '../../../styles/colors.scss' as colors;
+@use '../../../styles/breakpoints.scss' as breakpoints;
+
+.root{
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.titleWrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.songName{
+    font-size: 2.25rem;
+    color: colors.$primary;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+}
+
+.artistName{
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.documentWrapper{
+    // max-height: 100%;
+    // overflow: scroll;
+}
+
+.playerWrapper{
+    margin: 1rem 0;
+    width: 40%;
+}
+
+.videoWrapper{
+    visibility: hidden;
+}
