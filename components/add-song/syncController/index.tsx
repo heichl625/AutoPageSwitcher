@@ -72,6 +72,8 @@ const SyncController = ({ url, file, song_name, artist_name, setPageEndTimeStamp
     }
 
     const handleTimeChange = (value: number) => {
+        console.log(value)
+        setCurrentTime(value);
         playerRef.current?.seekTo(value, 'seconds')
     }
 
@@ -87,9 +89,9 @@ const SyncController = ({ url, file, song_name, artist_name, setPageEndTimeStamp
                     togglePlayingState={() => setIsPlaying(prev => !prev)}
                     onChange={(value: number) => handleTimeChange(value)}
                 />}
-                <ButtonWrapper>
+                <div className={$.buttonWrapper}>
                     {pageNumber === numPages ? <Button label="Complete Sync" type="success" onClick={handleSyncFinished} /> : <Button label="This Page Finished" type={videoStarted ? "action" : 'disabled'} onClick={() => handlePageFinished()} />}
-                </ButtonWrapper>
+                </div>
                 {url && <div className={$.videoWrapper}>
                     <ReactPlayer
                     url={url}

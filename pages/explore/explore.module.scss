@@ -1,0 +1,30 @@
+@use '../../styles/colors.scss' as colors;
+@use '../../styles/breakpoints.scss' as breakpoints;
+
+.root{
+    width: 60%;
+    margin: 0 auto;
+    border-left: 1px solid colors.$separator;
+    border-right: 1px solid colors.$separator;
+}
+
+.songWrapper{
+    padding: 0.5rem 1rem;
+    display: grid;
+    grid-template-areas: 
+        'songname instrument'
+        'artistname instrument';
+    grid-template-columns: 6fr 1fr;
+}
+
+.songTitle{
+    grid-area: songname;
+}
+
+.artistName{
+    grid-area: artistname;
+}
+
+.typeTag{
+    grid-area: instrument;
+}

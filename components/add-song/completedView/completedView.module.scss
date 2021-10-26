@@ -1,0 +1,79 @@
+@use '../../../styles/colors.scss' as colors;
+@use '../../../styles/breakpoints.scss' as breakpoints;
+
+.root{
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.publishPopupWrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: colors.$darkTransparentBackground;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+
+}
+
+.publishPopupCard{
+    background-color: colors.$secondary;
+    border-radius: 0.5rem;
+    padding: 1rem 2rem;
+}
+
+.publishEnquiry{
+    color: colors.$primary;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.publishButtonWrapper{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    & button{
+        padding: 0.5rem 1rem;
+    }
+
+    & button:first-of-type{
+        margin-right: 1rem;
+    }
+}
+
+.titleWrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.songName{
+    font-size: 2.25rem;
+    color: colors.$primary;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+}
+
+.artistName{
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.buttonWrapper{
+    margin-top: 1rem;
+}
+
+.playerWrapper{
+    margin: 1rem 0;
+    width: 40%;
+}
+
+.videoWrapper{
+    visibility: hidden;
+}

@@ -66,9 +66,13 @@ const Signin = () => {
                     access_token: data.access_token,
                     auth: true
                 }))
-                router.back();
+                if(router.query['origin'] === 'add-song'){
+                    router.push('/add-song')
+                }else{
+                    router.back();
+                }
             }
-        }catch(err){
+        }catch(err: any){
              setError(err.response.data.message[0] ?? err.response.data.message);
         }
 

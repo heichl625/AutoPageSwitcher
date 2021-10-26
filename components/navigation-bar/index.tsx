@@ -30,6 +30,9 @@ const NavigationBar = () => {
                     Scroll Your Music
                 </div>
             </Link>
+            <Link href="/explore" passHref>
+                <div className={$.navigationItem}>Explore</div>
+            </Link>
             <Link href="/add-song" passHref>
                 <div className={$.navigationItem}>Create Your Own</div>
             </Link>

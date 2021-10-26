@@ -34,7 +34,7 @@ const AudioPlayer = ({ isPlaying, currentTime, duration, togglePlayingState, onC
             placement="top"
             key={index}
           >
-            <Handle value={value} {...restProps} />
+            <Handle value={value} {...restProps}/>
           </SliderTooltip>
         );
     }
@@ -48,7 +48,7 @@ const AudioPlayer = ({ isPlaying, currentTime, duration, togglePlayingState, onC
             minutesStr = `${minutes}`
         }
 
-        let seconds = timeInSeconds-(60*minutes);
+        let seconds = Math.floor(timeInSeconds-(60*minutes));
         let secondsStr: string;
 
         if(seconds < 10){
@@ -73,9 +73,19 @@ const AudioPlayer = ({ isPlaying, currentTime, duration, togglePlayingState, onC
                     defaultValue={0}
                     value={currentTime}
                     onChange={(value: number) => onChange(value)}
-                    handle={handle}    
+                    handle={handle}
+                    trackStyle={{
+                        backgroundColor: '#1E1E1E'
+                    }}    
+                    railStyle={{
+                        backgroundColor: '#808e9b',
+                    }}
+                    handleStyle={{
+                        border: 'solid 2px #808e9b',
+                    }}
                 />
             </div>
+            <p className={$.timestamp}>{formatTime(currentTime)} / {formatTime(duration)}</p>
         </div>
     )
 }

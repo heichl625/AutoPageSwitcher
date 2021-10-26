@@ -12,11 +12,11 @@
     
     @include breakpoints.xl{
          grid-template-areas: 
-             'title title'
-             'subtitle subtitle'
-             'step1 step2';
+             'title title title instrument'
+             'subtitle subtitle subtitle subtitle'
+             'step1 step1 step2 step2';
          grid-gap: 1rem;
-         grid-template-columns: 1fr 1fr;
+         grid-template-columns: 1fr 1fr 1fr 1fr;
      }
 }
 
@@ -38,12 +38,21 @@
     border-bottom: 1px solid colors.$separator;
 }
 
+
 .step1Wrapper{
     grid-area: step1;
 }
 
 .step2Wrapper{
     grid-area: step2;
+}
+
+.selection{
+    grid-area: instrument;
+    border-radius: 0.5rem;
+    padding: 0.25rem 1rem;
+    font-size: 0.875rem;
+    color: colors.$primary;
 }
 
 .stickyFooter{

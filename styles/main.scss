@@ -6,3 +6,7 @@ main{
         height: calc(100vh - 3.5rem)
     }
 }
+
+.rc-slider-handle:active{
+    box-shadow: 0 0 5px #1e1e1e !important;
+}

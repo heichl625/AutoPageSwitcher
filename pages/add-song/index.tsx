@@ -17,20 +17,24 @@ import Input from 'components/input';
 const AddSong = () => {
 
     const dispatch = useAppDispatch();
+    const song = useAppSelector(store => store.song);
 
     const [confirmedUrl, setConfirmedUrl] = useState<string>('')
     const [file, setFile] = useState<string | ArrayBuffer | null | undefined>(null);
+    const [requestFile, setRequestFile] = useState<File>();
     const [isStep3, setIsStep3] = useState<boolean>(false);
     const [pageEndTimeStamps, setPageEndTimeStamps] = useState<number[]>([])
     const [completed, setCompleted] = useState<boolean>(false);
     const [songName, setSongName] = useState<string>("");
     const [artistName, setArtistName] = useState<string>("");
+    const [tabType, setTabType] = useState<string>("");
 
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             // setFile(e.target.files[0]);
             let file = e.target.files[0];
+            setRequestFile(file)
             let reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onloadend = (e: ProgressEvent<FileReader>) => {
@@ -54,7 +58,11 @@ const AddSong = () => {
         dispatch(syncSong({
             youtube_url: confirmedUrl,
             document: file,
-            timestamps: pageEndTimeStamps
+            timestamps: pageEndTimeStamps,
+            song_name: songName,
+            artist_name: artistName,
+            tab_type: tabType,
+            request_file: requestFile
         }))
     }
 
@@ -69,12 +77,16 @@ const AddSong = () => {
                 handleSyncFinished={() => handleSyncFinished()}
                 onClose={() => setIsStep3(false)}
             />}
-            {completed && <CompletedView
+            {(completed && requestFile) && <CompletedView
                 url={confirmedUrl}
                 file={file}
                 pageEndTimeStamps={pageEndTimeStamps}
+                song_name={songName}
+                artist_name={artistName}
+                tab_type={tabType}
+                request_file={requestFile}
             />}
-            {!isStep3 && <div className={$.initialStep}>
+            {(!isStep3 && !completed) && <div className={$.initialStep}>
                 <input
                     placeholder="Enter the song name here..."
                     className={$.titleInput}
@@ -87,6 +99,12 @@ const AddSong = () => {
                     value={artistName}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setArtistName(e.target.value)}
                 />
+                <select className={$.selection} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setTabType(e.target.value)}>
+                    <option value="">Select an Instrument...</option>
+                    <option value="guitar">Guitar</option>
+                    <option value="piano">Piano</option>
+                    <option value="drum">Drum</option>
+                </select>
                 <div className={$.step1Wrapper}>
                     <AddSongStep1
                         confirmedUrl={confirmedUrl}
